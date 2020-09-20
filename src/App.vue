@@ -1,32 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="taks" v-for="task in tasks" :key="task.id">
+      <h1>{{ task.name }}</h1>
+      <p>{{ task.description }}</p>
     </div>
-    <router-view/>
+
+    <!-- <router-view /> -->
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  name: 'app',
+  data() {
+    return {
+      tasks: [
+        { id: 1, name: 'task 1', description: 'lorem lorem something about task 1' },
+        { id: 2, name: 'task 2', description: 'lorem lorem something about task 2' },
+        { id: 3, name: 'task 2', description: 'lorem lorem something about task 3' },
+      ],
+    };
+  },
+};
+</script>
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style></style>
