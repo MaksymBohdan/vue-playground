@@ -1,25 +1,38 @@
 <template>
   <div id="app">
-    <div class="taks" v-for="task in tasks" :key="task.id">
-      <h1>{{ task.name }}</h1>
-      <p>{{ task.description }}</p>
-    </div>
-
     <!-- <router-view /> -->
+    <NewItem @add-item="addItem" />
+    <List v-bind:items="items" @remove-item="removeItem" />
   </div>
 </template>
 
 <script>
+import List from './views/List.vue';
+import NewItem from './views/NewItem.vue';
+
 export default {
   name: 'app',
+  components: {
+    List,
+    NewItem,
+  },
   data() {
     return {
-      tasks: [
-        { id: 1, name: 'task 1', description: 'lorem lorem something about task 1' },
-        { id: 2, name: 'task 2', description: 'lorem lorem something about task 2' },
-        { id: 3, name: 'task 2', description: 'lorem lorem something about task 3' },
+      items: [
+        { id: 1, name: 'aaaaa', status: false },
+        { id: 2, name: 'bbbbb', status: false },
+        { id: 3, name: 'ccccc ', status: false },
       ],
     };
+  },
+  methods: {
+    removeItem(id) {
+      console.log('id', id);
+      this.items = this.items.filter((i) => i.id !== id);
+    },
+    addItem(newItem) {
+      this.items.unshift(newItem);
+    },
   },
 };
 </script>

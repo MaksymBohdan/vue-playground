@@ -1,24 +1,26 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import NewTask from '../views/NewTask.vue';
+import List from '../views/List.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'NewTask',
-    component: NewTask,
-  },
-  {
-    path: '/list',
     name: 'List',
-    component: () => import(/* webpackChunkName: "list" */ '../views/List.vue'),
+    component: List,
   },
+
   {
-    path: '/page:id',
-    name: 'Page',
-    component: () => import(/* webpackChunkName: "page" */ '../views/Page.vue'),
+    path: '/new-item',
+    name: 'NewItem',
+    component: () => import(/* webpackChunkName: "new-item" */ '../views/NewItem.vue'),
+  },
+
+  {
+    path: '/item:id',
+    name: 'Item',
+    component: () => import(/* webpackChunkName: "page" */ '../views/Item.vue'),
   },
 ];
 
