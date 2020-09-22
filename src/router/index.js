@@ -1,27 +1,32 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import List from '../views/List.vue';
+import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'List',
-    component: List,
+    name: 'Home',
+    component: Home,
   },
 
   {
-    path: '/new-item',
-    name: 'NewItem',
-    component: () => import(/* webpackChunkName: "new-item" */ '../views/NewItem.vue'),
+    path: '/second-page',
+    name: 'SecondPage',
+    component: () =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      import(/* webpackChunkName: "page" */ '../views/SecondPage.vue'),
+
+    // component: () =>
+    //   import(/* webpackChunkName: "new-item" */ '../views/Home.vue'),
   },
 
-  {
-    path: '/item:id',
-    name: 'Item',
-    component: () => import(/* webpackChunkName: "page" */ '../views/Item.vue'),
-  },
+  // {
+  //   path: '/item:id',
+  //   name: 'Item',
+  //   component: () => import(/* webpackChunkName: "page" */ '../views/Item.vue'),
+  // },
 ];
 
 const router = new VueRouter({

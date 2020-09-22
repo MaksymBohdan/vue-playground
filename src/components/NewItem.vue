@@ -18,13 +18,10 @@ export default {
   },
   methods: {
     addItem() {
-      console.log('form data', this.text);
-
       if (this.text.trim()) {
-        const newItem = { id: Date.now(), name: this.text, status: false };
+        const newItem = { id: Date.now(), title: this.text, completed: false };
 
         this.$emit('add-item', newItem);
-
         this.text = '';
       }
     },
