@@ -3,7 +3,7 @@
     <span v-bind:class="{ completed: item.completed }">
       <input type="checkbox" v-on:change="item.completed = !item.completed" />
       <strong>{{ idx }}</strong>
-      {{ item.title }}
+      {{ item.title | uppercase }}
     </span>
 
     <button class="rm" v-on:click="$emit('remove-item', item.id)">
@@ -14,6 +14,11 @@
 
 <script>
 export default {
+  filters: {
+    uppercase(value) {
+      return value.toUpperCase();
+    },
+  },
   props: {
     item: {
       type: Object,
