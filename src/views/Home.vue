@@ -1,18 +1,31 @@
 <template>
-  <ul class="list">
-    <li class="item" :key="post.id" v-for="post of allPosts">
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.body }}</p>
-    </li>
-  </ul>
+  <div>
+    <NewPost />
+    <h1>Amount of actual posts: {{ getPostsAmount.actual }}</h1>
+    <h1>Amount of validated posts: {{ getPostsAmount.validate }}</h1>
+
+    <ul class="list">
+      <li class="item" :key="post.id" v-for="post of validPost">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.body }}</p>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import NewPost from '../components/NewPost.vue';
 
 export default {
   name: 'home',
-  components: {},
+  components: { NewPost },
+  computed: mapGetters(['allPosts', 'getPostsAmount', 'validPost']),
+  watch: {},
+  methods: mapActions(['fetchPost']),
+  mounted() {
+    this.fetchPost(4);
+  },
   // WITHOUT GETTERS
   // computed: {
   // allPosts() {
@@ -20,13 +33,10 @@ export default {
   // },
   // },
 
-  computed: mapGetters(['allPosts']),
-  watch: {},
   // data() {}, local data
-  mounted() {
-    this.$store.dispatch('fetchPost');
-  },
-  methods: {},
+  // mounted() {
+  //   this.$store.dispatch('fetchPost');
+  // },
 };
 </script>
 
